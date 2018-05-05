@@ -1,0 +1,27 @@
+{
+  "name": "duniter_ethereum_oracle",
+  "version": "1.0.0",
+  "description": "An Ethereum oracle that interact with the Duniter blockchain",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YoanSallami/duniter_ethereum_oracle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YoanSallami/duniter_ethereum_oracle/issues"
+  },
+  "homepage": "https://github.com/YoanSallami/duniter_ethereum_oracle#readme",
+  "dependencies": {
+    "duniter": "^1.6.21",
+    "openzeppelin-solidity": "1.9.0"
+  }
+}
