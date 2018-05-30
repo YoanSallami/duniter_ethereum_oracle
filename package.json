@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/YoanSallami/duniter_ethereum_oracle#readme",
   "dependencies": {
-    "duniter": "^1.6.21",
-    "openzeppelin-solidity": "1.9.0"
+    "zeppelin-solidity": "1.7.0"
   }
 }
