@@ -7,7 +7,7 @@ pragma solidity ^0.4.19;
 
 import "../lib/oraclizeAPI.sol";
 
-contract MembershipTrackerOracle is usingOraclize {
+contract MembershipTracker is usingOraclize {
 
     string public pubKey;
     string public membership;
