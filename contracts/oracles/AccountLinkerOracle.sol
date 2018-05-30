@@ -26,7 +26,7 @@ contract AccountLinkerOracle is usingOraclize {
     mapping(bytes32 => address) public requestIndexToSender;
     
     event LogNewOraclizeQuery(string description);
-    event AccountLinked(adress addr, string pubKey);
+    event AccountLinked(address addr, string pubKey);
 
     function AccountLinkerOracle() public {
         // Set oraclize proof
@@ -38,11 +38,10 @@ contract AccountLinkerOracle is usingOraclize {
         require(msg.sender == oraclize_cbAddress());
         // Check if the myid is valid
         require(requestPending[myid]);
-        // Store the result from oraclize
         // Verify that the request sender address match the address in comment
         require(requestIndexToSender[myid] == parseAddr(result));
         // Link the Ethereum account to the Duniter account
-        etherumAddrToDuniterPubKey[addrProof] = requestIndexToPubKey[myid];
+        etherumAddrToDuniterPubKey[requestIndexToSender[myid]] = requestIndexToPubKey[myid];
         // Emit event
         AccountLinked(requestIndexToSender[myid], requestIndexToPubKey[myid]);
         // Reset the request information
@@ -52,12 +51,16 @@ contract AccountLinkerOracle is usingOraclize {
     }
 
     function linkAccounts(uint256 _txNb, string _pubKey) public payable {
-        request(msg.value > oraclize_getPrice("URL") + linkingFee);
+        require(msg.value > oraclize_getPrice("URL") + linkingFee);
         // Query the comment of the given transation _txNb in the history of the _pubKey account
-        bytes32 myid = oraclize_query("URL", strConcat("json(https://g1.duniter.fr/tx/history/", _pubKey, "/).sent.", uint2str(_txNb), ".comment");
+        bytes32 myid = oraclize_query("URL", strConcat("json(https://g1.duniter.fr/tx/history/", _pubKey, "/).sent.", uint2str(_txNb), ".comment"));
         LogNewOraclizeQuery("Oraclize query was sent, standing by for the answer..");
         requestPending[myid] = true;
         requestIndexToPubKey[myid] = _pubKey;
         requestIndexToSender[myid] = msg.sender;
+    }
+
+    function getPubKey(address _account) public view returns(string) {
+        return etherumAddrToDuniterPubKey[_account];
     }
 }

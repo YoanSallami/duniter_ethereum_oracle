@@ -5,7 +5,7 @@ pragma solidity ^0.4.19;
 * @dev Enable to query securely the Duniter blockchain in order to track the memberships of the given pubKey
 **/
 
-import "../oraclizeAPI.sol";
+import "../lib/oraclizeAPI.sol";
 
 contract MembershipTrackerOracle is usingOraclize {
 
