@@ -16,7 +16,7 @@ Install ganache-cli globally with `npm install -g ganache-cli`
 Install the repository & run tests with :
 ```
 git clone https://github.com/YoanSallami/duniter_ethereum_oracle.git
-cd cryptodroids-core
+cd duniter_ethereum_oracle
 npm install
 npm test
 ```
